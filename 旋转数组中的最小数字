@@ -1,0 +1,20 @@
+抓住题目特征
+二分法
+
+先将数组一分为二，如果是期待类型，意味着右边大于左边，最后一个元素当然大于第一个元素
+由此为突破口
+
+class Solution:
+    def findMin(self, nums: List[int]) -> int:
+        lo, hi = 0, len(nums) - 1 // 设置出运算变量
+        if(nums[0] < nums[-1]): //返回条件
+            return nums[0]
+        while lo < hi:
+            mid = (lo + hi) >> 1
+            # 这里判断条件设为>=的元素是因为有一个[2,1]的测试用例 此时mid为0 若设为大于最后输出的是2
+            if nums[mid] >= nums[0]:
+                lo = mid + 1
+            else:
+                hi = mid
+        return nums[lo]
+
